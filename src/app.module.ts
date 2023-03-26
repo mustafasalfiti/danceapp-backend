@@ -21,15 +21,15 @@ import { ConfigModule } from '@nestjs/config';
     AuthModule,
     MorganModule,
     FileModule,
-    DatabaseModule
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [
     AppService,
     {
-      provide:APP_INTERCEPTOR,
-      useClass:MorganInterceptor("combined")
-    }
+      provide: APP_INTERCEPTOR,
+      useClass: MorganInterceptor('combined'),
+    },
   ],
 })
-export class AppModule { }
+export class AppModule {}
