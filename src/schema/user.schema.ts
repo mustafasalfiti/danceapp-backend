@@ -1,9 +1,10 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Date, Document } from 'mongoose';
+import { SexEnum } from 'src/enums/sex.enum';
 
 @Schema({ timestamps: true })
 export class User extends Document {
-  @Prop()
+  @Prop({ type: Object })
   fullname: Fullname;
 
   @Prop({ unique: true, required: true })
