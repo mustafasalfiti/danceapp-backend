@@ -5,33 +5,19 @@ import { DescriptionSchema } from './sub/description.schema';
 import { LocationSchema } from './sub/location.schema';
 import { User } from './user.schema';
 
-
-@Schema()
+@Schema({ timestamps: true })
 export class Post extends Document {
-    @Prop({ type: Types.ObjectId, ref: User.name, required: true })
-    user_id: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: User.name })
+  user!: User;
 
-    @Prop({ type: DescriptionSchema, required: true })
-    description: Description;
+  @Prop({ type: DescriptionSchema, required: true })
+  description: Description;
 
-    @Prop({ type: LocationSchema, required: true })
-    location: ILocation;
-
-    @Prop({ type: [CommentSchema] , default:[] })
-    comments: IComment[];
-
-    //#TODO should be independent
-    @Prop({ type: [Types.ObjectId] , default:[] })
-    likes: Types.ObjectId[];
-
-    @Prop({ type: Date, default: Date.now() })
-    createdAt: Date;
-    
-    @Prop({type: [ Types.ObjectId ] , default:[]})
-    vote_up: Types.ObjectId[];
-
-    @Prop({type: [ Types.ObjectId ] , default:[]})
-    vote_down: Types.ObjectId[];
+  @Prop({ type: [CommentSchema], default: [] })
+  comments: IComment[];
+  //#TODO should be independent
+  @Prop({ type: Number })
+  likes: number;
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);
