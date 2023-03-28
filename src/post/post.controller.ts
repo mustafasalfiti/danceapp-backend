@@ -54,6 +54,7 @@ export class PostController {
    * @param createPostDto
    * @param res the response object from express framwork
    */
+  @UseGuards(JwtAuthGuard)
   @Post()
   public async createPost(
     @Body() createPostDto: CreatePostDto,
